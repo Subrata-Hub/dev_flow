@@ -9,6 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { SignedOut } from "@clerk/nextjs";
+// import { SignInButton, SignUpButton, SignedOut } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
@@ -85,6 +86,11 @@ const MobileNav = () => {
                     <span className="primary-text-gradient">Log In</span>
                   </Button>
                 </Link>
+                {/* <SignInButton>
+                  <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                    <span className="primary-text-gradient">Log In</span>
+                  </Button>
+                </SignInButton> */}
               </SheetClose>
               <SheetClose asChild>
                 <Link href="/sign-up">
@@ -92,6 +98,11 @@ const MobileNav = () => {
                     Sign Up
                   </Button>
                 </Link>
+                {/* <SignUpButton>
+                  <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
+                    Sign Up
+                  </Button>
+                </SignUpButton> */}
               </SheetClose>
             </div>
           </SignedOut>
