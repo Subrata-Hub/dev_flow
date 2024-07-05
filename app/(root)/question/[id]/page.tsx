@@ -33,9 +33,9 @@ const Page = async ({ params }: any) => {
           >
             <Image
               src={result.author.picture}
-              className="rounded-full"
-              width={22}
-              height={22}
+              className="size-7 rounded-full object-cover"
+              width={28}
+              height={28}
               alt="profile_image"
             />
             <p className="paragraph-semibold text-dark300_light700">
