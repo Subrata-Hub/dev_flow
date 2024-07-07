@@ -53,6 +53,7 @@ export interface JobFilterParams {
 }
 
 export interface GetQuestionsParams {
+  
   page?: number;
   pageSize?: number;
   searchQuery?: string;

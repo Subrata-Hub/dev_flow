@@ -15,11 +15,13 @@ interface QuestionProps {
     _id: string;
     name: string;
     picture: string;
+    clerkId: string;
   };
   upvotes: number;
   views: number;
   answers: Array<object>;
   createdAt: Date;
+  clerkId?: string | null;
 }
 
 const QuestionCard = ({
@@ -59,7 +61,8 @@ const QuestionCard = ({
           alt="user"
           value={author.name}
           title={` -asked ${getTimestamp(createdAt)}`}
-          href={`/profile/${author._id}`}
+          href={`/profile/${author.clerkId}`}
+          // author._id
           textStyles="body-medium text-dark400_light700"
           isAuthor
         />

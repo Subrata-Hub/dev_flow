@@ -6,6 +6,7 @@ import {
   
   const isProtectedRoute = createRouteMatcher([
     '/ask-question(.*)',
+    '/collection(.*)',
   ]);
   
   export default clerkMiddleware((auth, req) => {
