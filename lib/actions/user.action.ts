@@ -222,5 +222,13 @@ export async function getUserAnswers(params:GetUserStatsParams){
     }
 }
 
+// export async function updateUser(params: UpdateUserParams){
+//     try {
+//         connectToDatabase()
+//     } catch (error) {
+        
+//     }
+// }
+
 
 // page=1, pageSize=10, filter,
