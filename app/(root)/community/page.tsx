@@ -7,9 +7,10 @@ import React from "react";
 import { getAllUser } from "@/lib/actions/user.action";
 import Link from "next/link";
 import UserCard from "@/components/cards/UserCard";
+import { SearchParamsProps } from "@/types";
 
-const Page = async () => {
-  const result = await getAllUser({});
+const Page = async ({searchParams}: SearchParamsProps) => {
+  const result = await getAllUser({searchQuery: searchParams.q});
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">All Users</h1>

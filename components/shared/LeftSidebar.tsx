@@ -2,8 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { sidebarLinks } from "@/constants";
-
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { SignedOut, useAuth } from "@clerk/nextjs";
@@ -12,6 +10,49 @@ import { Button } from "../ui/button";
 const LeftSidebar = () => {
   const { userId } = useAuth();
   const pathName = usePathname();
+
+  const sidebarLinks = [
+    {
+      imgURL: "/assets/icons/home.svg",
+      route: "/",
+      label: "Home",
+    },
+    {
+      imgURL: "/assets/icons/users.svg",
+      route: "/community",
+      label: "Community",
+    },
+    {
+      imgURL: "/assets/icons/star.svg",
+      route: "/collection",
+      label: "Collections",
+    },
+    {
+      imgURL: "/assets/icons/suitcase.svg",
+      route: "/jobs",
+      label: "Find Jobs",
+    },
+    {
+      imgURL: "/assets/icons/tag.svg",
+      route: "/tags",
+      label: "Tags",
+    },
+    ...(userId
+      ? [
+          {
+            imgURL: "/assets/icons/user.svg",
+            route: `/profile/${userId}`,
+            label: "Profile",
+          },
+        ]
+      : []),
+    {
+      imgURL: "/assets/icons/question.svg",
+      route: "/ask-question",
+      label: "Ask a question",
+    },
+  ];
+
   return (
     <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
       <div className="flex flex-1 flex-col gap-6">
@@ -20,13 +61,6 @@ const LeftSidebar = () => {
             (pathName.includes(item.route) && item.route.length > 1) ||
             pathName === item.route;
 
-          if (item.route === "/profile") {
-            if (userId) {
-              item.route = `${item.route}/${userId}`;
-            } else {
-              return null;
-            }
-          }
           return (
             <Link
               key={item.route}
