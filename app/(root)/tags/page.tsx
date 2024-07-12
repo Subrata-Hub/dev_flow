@@ -1,6 +1,6 @@
 import LocalSearchbar from "@/components/shared/scarch/LocalSearchbar";
 
-import { UserFilters } from "@/constants/filters";
+import { TagFilters } from "@/constants/filters";
 
 import Filter from "@/components/shared/Filter";
 import React from "react";
@@ -12,7 +12,10 @@ import { getAllTags } from "@/lib/actions/tag.action";
 import { SearchParamsProps } from "@/types";
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
-  const result = await getAllTags({ searchQuery: searchParams.q });
+  const result = await getAllTags({
+    searchQuery: searchParams.q,
+    filter: searchParams.filter,
+  });
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">All Tags</h1>
@@ -26,7 +29,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
           otherClasses="flex-1"
         />
         <Filter
-          filters={UserFilters}
+          filters={TagFilters}
           otherClasses="min-h-[56px] sm:min-w-[170px]"
         />
       </div>

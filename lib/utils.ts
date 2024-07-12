@@ -85,7 +85,8 @@ export const formUrlQuery = ({params,key,value}: UrlQueryParams) => {
   return qs.stringifyUrl({
     url: window.location.pathname,
     query: currentUrl
-  })
+  },{ skipNull: true})
+  
 }
 
 interface removeUrlQueryParams {

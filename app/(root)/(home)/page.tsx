@@ -10,8 +10,11 @@ import QuestionCard from "@/components/cards/QuestionCard";
 import { getQuestions } from "@/lib/actions/question.action";
 import { SearchParamsProps } from "@/types";
 
-const Home = async ({searchParams}: SearchParamsProps) => {
-  const result = await getQuestions({searchQuery: searchParams.q});
+const Home = async ({ searchParams }: SearchParamsProps) => {
+  const result = await getQuestions({
+    searchQuery: searchParams.q,
+    filter: searchParams.filter,
+  });
 
   return (
     <>
