@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // experimental: {
-  //     mdxRs: true,
-  //     serverComponentsExternalPackages: ["mongoose"],
-  //   },
   images: {
     remotePatterns: [
       {
@@ -15,6 +11,9 @@ const nextConfig = {
         hostname: "*",
       },
     ],
+  },
+  env: {
+    GEMINI_API_SECRET_KEY: process.env.GEMINI_API_SECRET_KEY,
   },
 };
 
