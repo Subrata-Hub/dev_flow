@@ -4,9 +4,9 @@ import { TagFilters } from "@/constants/filters";
 
 import Filter from "@/components/shared/Filter";
 import React from "react";
-// import { getAllUser } from "@/lib/actions/user.action";
+
 import Link from "next/link";
-// import UserCard from "@/components/cards/UserCard";
+
 import NoResult from "@/components/shared/NoResult";
 import { getAllTags } from "@/lib/actions/tag.action";
 import { SearchParamsProps } from "@/types";
