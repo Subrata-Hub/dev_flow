@@ -16,7 +16,7 @@ const Loading = () => {
           .map((item) => (
             <Skeleton
               key={item}
-              className="h-60 w-full rounded-2xl sm:w-[260px]"
+              className="h-60 w-full rounded-2xl sm:w-[250px]"
             />
           ))}
       </div>
