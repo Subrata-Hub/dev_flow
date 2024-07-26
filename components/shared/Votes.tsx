@@ -12,6 +12,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 import React, { useEffect } from "react";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   type: string;
@@ -39,7 +40,10 @@ const Votes = ({
 
   const handleVote = async (action: string) => {
     if (!userId) {
-      return;
+      return toast({
+        title: "Please log in",
+        description: "You must be loged in to perform this action",
+      });
     }
 
     if (action === "upvote") {
@@ -61,7 +65,10 @@ const Votes = ({
         });
       }
       // to do toast
-      return;
+      return toast({
+        title: `Upvote ${!hasupVoted ? "Successfull" : "Removed"}`,
+        variant: !hasupVoted ? "default" : "destructive",
+      });
     }
 
     if (action === "downvote") {
@@ -83,17 +90,29 @@ const Votes = ({
         });
       }
       // to do toast
+      return toast({
+        title: `Downvote ${!hasdownVoted ? "Successfull" : "Removed"}`,
+        variant: !hasdownVoted ? "default" : "destructive",
+      });
     }
   };
 
   const handleSave = async () => {
     if (!userId) {
-      return;
+      return toast({
+        title: "Please log in",
+        description: "You must be loged in to perform this action",
+      });
     }
     await toggleSaveQuestion({
       userId: JSON.parse(userId),
       questionId: JSON.parse(itemId),
       path: pathname,
+    });
+
+    return toast({
+      title: `Question ${!hasSaved ? "Saved in" : "Remove from"} your collection`,
+      variant: !hasSaved ? "default" : "destructive",
     });
   };
 

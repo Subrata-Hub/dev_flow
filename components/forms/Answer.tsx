@@ -19,6 +19,7 @@ import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   question: string;
@@ -44,9 +45,10 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
   const handeCreateAnswer = async (values: z.infer<typeof AnswerSchema>) => {
     if (!user) {
-      // router.push("/sign-in");
-      // setIsSubmitting(false);
-      return;
+      return toast({
+        title: "Please log in",
+        description: "You must be loged in to perform this action",
+      });
     }
 
     setIsSubmitting(true);
@@ -73,7 +75,12 @@ const Answer = ({ question, questionId, authorId }: Props) => {
   };
 
   const generateAIAnswer = async () => {
-    if (!authorId) return;
+    if (!authorId) {
+      return toast({
+        title: "Please log in",
+        description: "You must be loged in to generate a AI Answer",
+      });
+    }
 
     setIsSubmittingAI(true);
 
