@@ -8,14 +8,58 @@ import {
   SheetClose,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedOut, useAuth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
-import { sidebarLinks } from "@/constants";
+
 import { usePathname } from "next/navigation";
 
 const NavContent = () => {
+  const { userId } = useAuth();
   const pathName = usePathname();
+
+  const sidebarLinks = [
+    {
+      imgURL: "/assets/icons/home.svg",
+      route: "/",
+      label: "Home",
+    },
+    {
+      imgURL: "/assets/icons/users.svg",
+      route: "/community",
+      label: "Community",
+    },
+    {
+      imgURL: "/assets/icons/star.svg",
+      route: "/collection",
+      label: "Collections",
+    },
+    {
+      imgURL: "/assets/icons/suitcase.svg",
+      route: "/jobs",
+      label: "Find Jobs",
+    },
+    {
+      imgURL: "/assets/icons/tag.svg",
+      route: "/tags",
+      label: "Tags",
+    },
+    ...(userId
+      ? [
+          {
+            imgURL: "/assets/icons/user.svg",
+            route: `/profile/${userId}`,
+            label: "Profile",
+          },
+        ]
+      : []),
+    {
+      imgURL: "/assets/icons/question.svg",
+      route: "/ask-question",
+      label: "Ask a question",
+    },
+  ];
+
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
       {sidebarLinks.map((item) => {
